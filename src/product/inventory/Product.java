@@ -18,6 +18,7 @@ public class Product {
         this.quantity = quantity;
     }
 
+    //Getter that returns product name.
     public String getName() {
         return name;
     }
