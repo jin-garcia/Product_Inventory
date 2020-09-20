@@ -19,10 +19,12 @@ public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Database db = new Database();
-        Product p;
+        Product p = null;
         Manufacturer manu = null;
         Address address;
         String proName, name, state, city, zip;
+        double price;
+        int quantity;
         
         System.out.println("Type product manufacturer name, state, city and zip: ");
         name = input.next();
@@ -33,6 +35,24 @@ public class Main {
         address = new Address (state,city,zip);
         manu = new Manufacturer (address, name);
         System.out.println(manu.getAddress().getCity());
+        
+        System.out.println("Type product Name, price and quantity: ");
+        proName = input.next();
+        price = input.nextDouble();
+        quantity = input.nextInt();
+        input.nextLine();
+        
+        p = new Product(proName, price, manu, quantity);
+        
+        db.addProduct(p);
+        
+        db.printReport();
+        
+        System.out.println("Product name to remove: ");
+        String delete = input.next();
+        db.removeProduct(delete);
+        
+        db.printDeleted();
         
     }
     
