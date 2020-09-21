@@ -2,11 +2,11 @@
 package product.inventory;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
-/**
- *
- * @author 13055
- */
+//class for product database. Here we have methods for creating a database object and modifying/printing data about products.
 public class Database {
     
     ArrayList<Product> inventory;
@@ -30,31 +30,20 @@ public class Database {
                 inventory.remove(p);
                 removed.add(p);
             }
-        }
-    }
-    
-    public void getProductInfo(Product p) {
-        for (int i = 0; i < inventory.size(); i++) {
-            if (p.getName().equalsIgnoreCase(inventory.get(i).getName())) {
-                Product a = inventory.get(i);
-                System.out.println("Product information: " + a.getName() + ", " + a.getPrice() + ", Quantity: " + a.getQuantity());
+            else {
+                JOptionPane.showMessageDialog(null, "Product not found - check inventory list.");
             }
         }
     }
     
-    public void printReport() {
+    public void getProductInfo(String p) {
         for (int i = 0; i < inventory.size(); i++) {
-            Product p = inventory.get(i);
-            System.out.println("Product     Purchase Date     Quantity     Price     Manufacturer     State");
-            System.out.println(p.getName() + "          " + "BLANK" + "         " + p.getQuantity() + "         " + p.getPrice() + "          " + p.getManufacturer().getName() + "         " + p.getManufacturer().getAddress().getState());
+            if (p.equalsIgnoreCase(inventory.get(i).getName())) {
+                Product a = inventory.get(i);
+                JOptionPane.showMessageDialog(null, "Product information: " + "\n" + a.getName() + ", " + "$" + a.getPrice() + ", Quantity: " + a.getQuantity());
+            }
         }
     }
     
-    public void printDeleted() {
-        for (int i = 0; i < removed.size(); i++) {
-            Product p = removed.get(i);
-            System.out.println("Product     Date        Manufacturer");
-            System.out.println(p.getName() + "          " + "BLANK" +  "          " + p.getManufacturer().getName());
-        }
-    }
+    
 }
